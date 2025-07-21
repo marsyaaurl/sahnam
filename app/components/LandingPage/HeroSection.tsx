@@ -36,11 +36,17 @@ export default function HeroSection() {
                                 Start greening the planet from your home. With Sahnam, even small spaces can spark big change.
                             </h3>
                             <Link href="">
-                                <div className="flex flex-row bg-primary w-fit items-center justify-center px-3 py-1 gap-x-3 rounded-xl hover:bg-primaryLight hover:scale-105 transition-all duration-300">
-                                    <button className="flex flex-row w-fit text-background font-medium justify-center text-lg">
-                                        Start to Invest
-                                    </button>
-                                    <MoveRight className="text-background"/>
+                                <div className="flex flex-row gap-x-4">
+                                    <div className="flex flex-row bg-primary w-fit items-center justify-center px-3 py-1 gap-x-3 rounded-xl hover:bg-primaryLight hover:scale-105 transition-all duration-300">
+                                        <button className="flex flex-row w-fit text-background font-medium justify-center text-lg">
+                                            Start to Invest
+                                        </button>
+                                    </div>
+                                    <div className="flex flex-row border-primary bg-transparent hover:bg-primary border-2 w-fit items-center justify-center px-3 py-1 gap-x-3 rounded-xl hover:scale-105 transition-all duration-300">
+                                        <button className="flex flex-row w-fit text-primary hover:text-background font-medium justify-center text-lg">
+                                            Be our Farmer
+                                        </button>
+                                    </div>
                                 </div>
                             </Link>
                         </div>
@@ -62,11 +68,17 @@ export default function HeroSection() {
                             Start greening the planet from your home. With Sahnam, even small spaces can spark big change.
                         </h3>
                         <Link href="">
-                            <div className="flex flex-row bg-primary w-fit items-center justify-center px-3 py-1 gap-x-3 rounded-xl hover:bg-primaryLight hover:scale-105 transition-all duration-300">
-                                <button className="flex flex-row w-fit text-background font-medium justify-center text-lg">
-                                    Start to Invest
-                                </button>
-                                <MoveRight className="text-background"/>
+                            <div className="flex flex-row gap-x-5">
+                                <div className="flex flex-row bg-primary w-fit items-center justify-center px-3 py-1 gap-x-3 rounded-xl hover:bg-primaryLight hover:scale-105 transition-all duration-300">
+                                    <button className="flex flex-row w-fit text-background font-medium justify-center text-lg">
+                                        Start to Invest
+                                    </button>
+                                </div>
+                                <div className="flex flex-row border-primary bg-transparent hover:bg-primary border-2 w-fit items-center justify-center px-3 py-1 gap-x-3 rounded-xl hover:scale-105 transition-all duration-300">
+                                    <button className="flex flex-row w-fit text-primary hover:text-background font-medium justify-center text-lg">
+                                        Be our Farmer
+                                    </button>
+                                </div>
                             </div>
                         </Link>
                     </div>
