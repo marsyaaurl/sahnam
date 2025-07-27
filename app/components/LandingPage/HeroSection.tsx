@@ -3,7 +3,6 @@ import LandingPagePhoto from "../../../public/assets/LandingPagePhoto.jpg";
 import LogoHero from "../../../public/assets/LogoHero.png";
 import LandingPagePhotoCropped from "../../../public/assets/LandingPagePhotoCropped.jpg";
 import Image from "next/image";
-import { MoveRight } from "lucide-react";
 import Link from "next/link";
 
 export default function HeroSection() {
@@ -35,20 +34,22 @@ export default function HeroSection() {
                             <h3 className="text-md">
                                 Start greening the planet from your home. With Sahnam, even small spaces can spark big change.
                             </h3>
-                            <Link href="">
-                                <div className="flex flex-row gap-x-4">
+                            <div className="flex flex-row gap-x-4">
+                                <Link href="/ChooseRole">
                                     <div className="flex flex-row bg-primary w-fit items-center justify-center px-3 py-1 gap-x-3 rounded-xl hover:bg-primaryLight hover:scale-105 transition-all duration-300">
                                         <button className="flex flex-row w-fit text-background font-medium justify-center text-lg">
                                             Start to Invest
                                         </button>
                                     </div>
+                                </Link>
+                                <Link href="/ChooseRole">
                                     <div className="flex flex-row border-primary bg-transparent hover:bg-primary border-2 w-fit items-center justify-center px-3 py-1 gap-x-3 rounded-xl hover:scale-105 transition-all duration-300">
                                         <button className="flex flex-row w-fit text-primary hover:text-background font-medium justify-center text-lg">
                                             Be our Farmer
                                         </button>
                                     </div>
-                                </div>
-                            </Link>
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -67,20 +68,22 @@ export default function HeroSection() {
                         <h3 className="text-lg">
                             Start greening the planet from your home. With Sahnam, even small spaces can spark big change.
                         </h3>
-                        <Link href="">
-                            <div className="flex flex-row gap-x-5">
+                        <div className="flex flex-row gap-x-5">
+                            <Link href="/ChooseRole">
                                 <div className="flex flex-row bg-primary w-fit items-center justify-center px-3 py-1 gap-x-3 rounded-xl hover:bg-primaryLight hover:scale-105 transition-all duration-300">
                                     <button className="flex flex-row w-fit text-background font-medium justify-center text-lg">
                                         Start to Invest
                                     </button>
                                 </div>
+                            </Link>
+                            <Link href="/ChooseRole">
                                 <div className="flex flex-row border-primary bg-transparent hover:bg-primary border-2 w-fit items-center justify-center px-3 py-1 gap-x-3 rounded-xl hover:scale-105 transition-all duration-300">
                                     <button className="flex flex-row w-fit text-primary hover:text-background font-medium justify-center text-lg">
                                         Be our Farmer
                                     </button>
                                 </div>
-                            </div>
-                        </Link>
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </div>
