@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabaseClient';
+import Link from 'next/link';
 
 export default function LoginForm() {
     const [email, setEmail] = useState('');
@@ -122,6 +123,7 @@ export default function LoginForm() {
                 </button>
                 {message && <p className="text-sm text-center text-red-500">{message}</p>}
             </form>
+            <p>Already have an account? <Link href="/Login" className='font-semibold text-primary'>Login</Link></p>
         </div>
     );
 }

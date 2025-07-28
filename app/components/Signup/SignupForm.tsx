@@ -2,6 +2,7 @@
 import { useSearchParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabaseClient';
+import Link from 'next/link';
 
 export default function SignUpForm() {
   const searchParams = useSearchParams();
@@ -81,6 +82,7 @@ export default function SignUpForm() {
         </button>
         {message && <p className="text-sm text-center">{message}</p>}
       </form>
+      <p>Already have an account? <Link href="/Login" className='font-semibold text-primary'>Login</Link></p>
     </div>
   );
 }
