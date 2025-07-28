@@ -1,6 +1,15 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { supabase } from '@/lib/supabaseClient'; // Pastikan path ini sesuai dengan setup Supabase Anda
+import { supabase } from '@/lib/supabaseClient';
+
+type PlantData = {
+  name: string;
+  photo: string;
+  price: number;
+  duration: number;
+  profits: number;
+  desc: string;
+};
 
 type InvestWithPlant = {
   invest_id: string;
@@ -8,23 +17,22 @@ type InvestWithPlant = {
   plant_id: string;
   amount: number;
   total_price: number;
-  plants: {
-    name: string;
-    photo: string;
-    price: number;
-    duration: number;
-    profits: number;
-    desc: string;
-  };
+  plants: PlantData;
+};
+
+type SupabaseInvestData = {
+  invest_id: string;
+  user_id: string;
+  plant_id: string;
+  amount: number;
+  total_price: number;
+  plants: PlantData[] | PlantData;
 };
 
 export default function AIInsights() {
   const [output, setOutput] = useState<string>('Loading AI insights...');
-  const [investments, setInvestments] = useState<InvestWithPlant[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [userID, setUserID] = useState<string | null>(null);
   
-  // Fetch data dari Supabase
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -39,7 +47,6 @@ export default function AIInsights() {
         }
 
         const user = sessionData.session.user;
-        setUserID(user.id);
         setOutput('Loading your investment data...');
 
         const { data, error } = await supabase
@@ -67,14 +74,11 @@ export default function AIInsights() {
           return;
         }
 
-        // Supabase returns plants as an array, but InvestWithPlant expects an object
-        const investmentData: InvestWithPlant[] = (data as any[]).map((item) => ({
+        const investmentData: InvestWithPlant[] = (data as SupabaseInvestData[]).map((item) => ({
           ...item,
           plants: Array.isArray(item.plants) ? item.plants[0] : item.plants,
         }));
-        setInvestments(investmentData);
         
-        // Generate AI insights menggunakan data yang sudah di-fetch
         await generateAIInsights(investmentData);
         
       } catch (error) {
@@ -88,28 +92,20 @@ export default function AIInsights() {
     fetchData();
   }, []);
 
-  // Function untuk format AI output dengan markdown dan HTML
   const formatAIOutput = (text: string): string => {
     return text
-      // Convert **bold** to <strong>
       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-      // Convert bullet points to proper HTML
       .replace(/^[\s]*[-•]\s*(.*?)$/gm, '<li>$1</li>')
-      // Wrap consecutive <li> items in <ul>
       .replace(/\n\n/g, '</p><p>')
-      // Wrap everything in paragraphs
       .replace(/^(.*)$/gm, (match) => {
         if (match.includes('<ul>') || match.includes('<li>') || match.includes('</p><p>')) {
           return match;
         }
         return match.trim() ? `<p>${match}</p>` : '';
       })
-      // Clean up empty paragraphs
       .replace(/<p><\/p>/g, '')
-      // Fix multiple paragraph breaks
       .replace(/<\/p><p>/g, '</p><br><p>');
   };
-
   
   const generateAIInsights = async (investmentData: InvestWithPlant[]) => {
     try {
@@ -120,7 +116,6 @@ export default function AIInsights() {
 
       setOutput('Analyzing your investments with AI...');
       
-      // Format data untuk AI analysis
       const formattedData = investmentData.map(investment => ({
         plant_name: investment.plants.name,
         amount_invested: investment.amount,
@@ -174,7 +169,7 @@ export default function AIInsights() {
         throw new Error('Empty response from AI API');
       }
       
-      let aiData;
+      let aiData: { output?: string };
       try {
         aiData = JSON.parse(aiText);
       } catch (parseError) {

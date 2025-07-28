@@ -3,14 +3,24 @@ import { supabase } from '@/lib/supabaseClient';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 
+interface PlantData {
+  plant_id: string;
+  name: string;
+  photo: string;
+  price: number;
+  duration: number;
+  profits: number;
+  desc: string;
+  // Add other plant properties as needed
+}
+
 interface PageProps {
   plant_id: string;
 }
 
 export default function InvestForm({ plant_id }: PageProps) {
   const [userID, setUserID] = useState<string | null>(null);
-  const [fullName, setFullName] = useState<string | null>(null);
-  const [plantData, setPlantData] = useState<any>(null);
+  const [plantData, setPlantData] = useState<PlantData | null>(null);
   const [loading, setLoading] = useState(true);
   const [amount, setAmount] = useState<number>(1);
   const [paymentMethod, setPaymentMethod] = useState<string>('Transfer Bank');
@@ -30,16 +40,6 @@ export default function InvestForm({ plant_id }: PageProps) {
 
         const user = sessionData.session.user;
         setUserID(user.id);
-
-        const { data: profileData } = await supabase
-          .from('users')
-          .select('full_name')
-          .eq('user_id', user.id)
-          .single();
-
-        if (profileData) {
-          setFullName(profileData.full_name);
-        }
 
         const { data: plant, error: plantError } = await supabase
           .from('plants')
@@ -64,7 +64,7 @@ export default function InvestForm({ plant_id }: PageProps) {
     fetchUserAndPlant();
   }, [plant_id]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async () => {
     setSubmitting(true);
     setMessage(null);
 
