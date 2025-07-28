@@ -5,7 +5,7 @@ interface PageProps {
   params: { id: string };
 }
 
-export default function Invest({ params }: PageProps) {
+export default async function Invest({ params }: PageProps) {
   return (
     <div className="flex flex-row md:gap-x-48 px-5 md:px-0">
       <NavbarLoggedin />
