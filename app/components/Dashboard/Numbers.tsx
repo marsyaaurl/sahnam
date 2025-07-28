@@ -82,23 +82,24 @@ export default function Numbers() {
   };
 
   return (
-    <div className="flex flex-row gap-x-10 w-full mt-8">
-      <div className="rounded-xl shadow-md bg-white p-6 w-80">
+    <div className="flex flex-wrap gap-6 w-full mt-8 justify-center md:justify-start">
+      <div className="rounded-xl shadow-md bg-white p-6 w-full sm:w-72 md:w-80 max-w-full">
         <h2 className="text-lg font-semibold">Total Plants</h2>
         <p className="text-3xl font-bold text-primary">{formatCurrency(totalPlants)}</p>
       </div>
-      
-      <div className="rounded-xl shadow-md bg-white p-6 w-80">
+
+      <div className="rounded-xl shadow-md bg-white p-6 w-full sm:w-72 md:w-80 max-w-full">
         <h2 className="text-lg font-semibold">Realized Profits</h2>
         <p className="text-3xl font-bold text-yellow-500">Rp{formatCurrency(totalProfits)}</p>
         <p className="text-sm text-gray-500">From matured investments</p>
       </div>
-      
-      <div className="rounded-xl shadow-md bg-white p-6 w-80">
+
+      <div className="rounded-xl shadow-md bg-white p-6 w-full sm:w-72 md:w-80 max-w-full">
         <h2 className="text-lg font-semibold">Expected Profits</h2>
         <p className="text-3xl font-bold text-green-500">Rp{formatCurrency(potentialProfits)}</p>
         <p className="text-sm text-gray-500">Total potential profit</p>
       </div>
     </div>
+
   );
 }
