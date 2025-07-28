@@ -60,7 +60,7 @@ export default function Chart() {
 
   return (
     <div className="w-full h-96 p-4 mt-8 ">
-      <h2 className="text-lg font-semibold mb-4">Profit per Tanaman</h2>
+      <h2 className="text-lg font-semibold mb-4">Profit per Plants</h2>
       <ResponsiveContainer width="100%" height="100%">
         <BarChart data={chartData}>
           <CartesianGrid strokeDasharray="3 3" />

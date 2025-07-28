@@ -35,8 +35,8 @@ export default function NavbarLandingPage() {
                 </div>
 
                 <div className="hidden md:block">
-                    <Link href="/ChooseRole">
-                        <h3 className="font-semibold text-primary border-primary border-2 rounded-full px-2 py-1 text-sm hover:border-none hover:bg-primary hover:text-background hover:py-[6px] hover:px-[10px]">Sign Up</h3>
+                    <Link href="/Login">
+                        <h3 className="font-semibold text-primary border-primary border-2 rounded-full px-2 py-1 text-sm hover:border-none hover:bg-primary hover:text-background hover:py-[6px] hover:px-[10px]">Login</h3>
                     </Link>
                 </div>
 
@@ -52,8 +52,8 @@ export default function NavbarLandingPage() {
                         <Link href="#steps">
                             <h3 className="font-semibold text-md text-text">Steps</h3>
                         </Link>
-                        <Link href="/ChooseRole">
-                            <h3 className="font-semibold text-md text-text">Signup</h3>
+                        <Link href="/Login">
+                            <h3 className="font-semibold text-md text-text">Login</h3>
                         </Link>
                     </div>
                 )}

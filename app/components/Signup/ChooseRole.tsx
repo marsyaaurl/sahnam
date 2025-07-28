@@ -9,6 +9,10 @@ export default function ChooseRole() {
         router.push(`/Signup?role=${role}`);
     };
 
+    const handleFarmer = (role: string) => {
+        router.push(`/ComingSoon?role=${role}`)
+    }
+
     return (
         <>
             <div className="flex flex-col items-centers justify-center py-44 gap-y-10">
@@ -25,7 +29,7 @@ export default function ChooseRole() {
                     </button>
                     <button 
                         className="flex flex-col gap-y-3 items-center justify-center rounded-2xl px-16 py-10 border-2 border-primary bg-transparent hover:bg-primary hover:text-background hover:scale-105"
-                        onClick={() => handleChoose('Farmer')}
+                        onClick={() => handleFarmer('Farmer')}
                         >
                         <div className='bg-primary/30 p-3 rounded-full'>
                             <Tractor className='w-12 h-12 text-background bg-transparent' />
