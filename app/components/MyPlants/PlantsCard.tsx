@@ -21,7 +21,6 @@ type InvestWithPlant = {
 
 export default function PlantsCard() {
   const [invests, setInvests] = useState<InvestWithPlant[]>([]);
-  const [userID, setUserID] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,7 +31,6 @@ export default function PlantsCard() {
       }
 
       const user = sessionData.session.user;
-      setUserID(user.id);
 
       const { data, error } = await supabase
         .from('invests')
@@ -72,7 +70,6 @@ export default function PlantsCard() {
       setInvests((prev) => prev.filter((invest) => invest.invest_id !== id));
     }
   };
-
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-4 gap-6 md:px-4 py-6">
@@ -115,7 +112,10 @@ export default function PlantsCard() {
             </div>
           </div>
 
-          <button onClick={() => handleStopInvesting(invest.invest_id)} className="bg-red-500 text-background py-1 rounded-md text-center font-semibold hover:bg-red-200 transition-colors">
+          <button 
+            onClick={() => handleStopInvesting(invest.invest_id)} 
+            className="bg-red-500 text-background py-1 rounded-md text-center font-semibold hover:bg-red-200 transition-colors"
+          >
             Stop Investing
           </button>
         </div>

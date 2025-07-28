@@ -3,16 +3,6 @@ import supabase from '@/lib/supabaseClient';
 import { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
 
-type InvestWithPlant = {
-  amount: number;
-  created_at: string;
-  plant_id: string;
-  plants: {
-    profits: number;
-    duration: number;
-  } | null;
-};
-
 export default function Numbers() {
   const [totalPlants, setTotalPlants] = useState<number>(0);
   const [totalProfits, setTotalProfits] = useState<number>(0);

@@ -29,7 +29,7 @@ export default function ChooseRole() {
                     </button>
                     <button 
                         className="flex flex-col gap-y-3 items-center justify-center rounded-2xl px-16 py-10 border-2 border-primary bg-transparent hover:bg-primary hover:text-background hover:scale-105"
-                        onClick={() => handleFarmer('Farmer')}
+                        onClick={() => handleFarmer ('Farmer')}
                         >
                         <div className='bg-primary/30 p-3 rounded-full'>
                             <Tractor className='w-12 h-12 text-background bg-transparent' />
