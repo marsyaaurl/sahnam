@@ -2,12 +2,7 @@ import NavbarLoggedin from "@/app/components/NavbarLoggedin";
 import InvestForm from "@/app/components/Catalog/InvestForm";
 
 interface PageProps {
-  params: {
-    id: string;
-  };
-  searchParams?: {
-    [key: string]: string | string[] | undefined;
-  };
+  params: { id: string };
 }
 
 export default function Invest({ params }: PageProps) {

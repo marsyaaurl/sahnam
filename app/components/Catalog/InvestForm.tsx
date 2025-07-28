@@ -11,21 +11,20 @@ interface PlantData {
   duration: number;
   profits: number;
   desc: string;
-  // Add other plant properties as needed
 }
 
-interface PageProps {
+interface InvestFormProps {
   plant_id: string;
 }
 
-export default function InvestForm({ plant_id }: PageProps) {
+export default function InvestForm({ plant_id }: InvestFormProps) {
   const [userID, setUserID] = useState<string | null>(null);
   const [plantData, setPlantData] = useState<PlantData | null>(null);
   const [loading, setLoading] = useState(true);
-  const [amount, setAmount] = useState<number>(1);
-  const [paymentMethod, setPaymentMethod] = useState<string>('Transfer Bank');
+  const [amount, setAmount] = useState(1);
+  const [paymentMethod, setPaymentMethod] = useState('Transfer Bank');
   const [message, setMessage] = useState<string | null>(null);
-  const [submitting, setSubmitting] = useState<boolean>(false);
+  const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     if (!plant_id) return;
@@ -64,7 +63,8 @@ export default function InvestForm({ plant_id }: PageProps) {
     fetchUserAndPlant();
   }, [plant_id]);
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     setSubmitting(true);
     setMessage(null);
 
@@ -103,22 +103,22 @@ export default function InvestForm({ plant_id }: PageProps) {
     <div className="flex w-full py-6 gap-x-10 items-center">
       <div className='flex flex-row w-1/2 gap-x-5'>
         <Image
-            src={`/assets/${plantData.photo}`}
-            alt={plantData.name}
-            width={200}
-            height={200}
-            className='bg-primary rounded-xl'
+          src={`/assets/${plantData.photo}`}
+          alt={plantData.name}
+          width={200}
+          height={200}
+          className='bg-primary rounded-xl'
         />
         <div className='flex flex-col justify-between'>
-            <div className='flex flex-col gap-y-3'>
-                <p className="font-semibold text-4xl">{plantData.name}</p>
-                <p className="">{plantData.desc}</p>
-            </div>
-            <div className='flex flex-col gap-y-1'>
-                <h4 className="text-2xl text-primary font-bold">Rp{plantData.price}</h4>
-                <p className='font-semibold'>Duration: <span className='text-yellow-400'>{plantData.duration} Days</span></p>
-                <p className='font-semibold'>Profits: <span className='text-red-400'>Rp{plantData.profits}</span></p>
-            </div>
+          <div className='flex flex-col gap-y-3'>
+            <p className="font-semibold text-4xl">{plantData.name}</p>
+            <p className="">{plantData.desc}</p>
+          </div>
+          <div className='flex flex-col gap-y-1'>
+            <h4 className="text-2xl text-primary font-bold">Rp{plantData.price}</h4>
+            <p className='font-semibold'>Duration: <span className='text-yellow-400'>{plantData.duration} Days</span></p>
+            <p className='font-semibold'>Profits: <span className='text-red-400'>Rp{plantData.profits}</span></p>
+          </div>
         </div>
       </div>
 
