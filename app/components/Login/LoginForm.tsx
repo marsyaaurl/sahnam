@@ -123,7 +123,7 @@ export default function LoginForm() {
                 </button>
                 {message && <p className="text-sm text-center text-red-500">{message}</p>}
             </form>
-            <p>Already have an account? <Link href="/Login" className='font-semibold text-primary'>Login</Link></p>
+            <p>Already have an account? <Link href="/Signup" className='font-semibold text-primary'>Signup</Link></p>
         </div>
     );
 }

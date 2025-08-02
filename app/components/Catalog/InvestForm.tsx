@@ -100,7 +100,7 @@ export default function InvestForm({ plant_id }: InvestFormProps) {
   if (!plantData) return <p className="text-center py-6">Plant data not found.</p>;
 
   return (
-    <div className="flex w-full py-6 gap-x-10 items-center">
+    <div className="flex md:flex-row flex-col w-full py-6 gap-x-10 items-center">
       <div className='flex flex-row w-1/2 gap-x-5'>
         <Image
           src={`/assets/${plantData.photo}`}
