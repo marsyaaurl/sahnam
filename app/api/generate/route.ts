@@ -1,35 +1,33 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { GoogleGenerativeAI } from "@google/generative-ai";
+import { NextResponse } from "next/server";
 
-export async function POST(request: NextRequest) {
+export async function POST(req: Request) {
   try {
-    const { prompt } = await request.json();
+    const { prompt } = await req.json();
 
     if (!prompt) {
-      return NextResponse.json({ error: 'Prompt is required' }, { status: 400 });
+      return NextResponse.json(
+        { error: "Prompt tidak boleh kosong." },
+        { status: 400 }
+      );
     }
 
-    const geminiApiKey = process.env.GEMINI_API_KEY;
+    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-    const geminiResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${geminiApiKey}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }],
-      }),
-    });
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    const output = await response.text();
 
-    const result = await geminiResponse.json();
-
-    const aiOutput = result?.candidates?.[0]?.content?.parts?.[0]?.text || 'AI did not return a valid response.';
-
-    return NextResponse.json({ output: aiOutput });
-
+    return NextResponse.json({ output });
   } catch (error) {
-    console.error('Error generating AI insights:', error);
+    if (error instanceof Error) {
+        console.error("Gemini API error:", error.message); 
+    } else {
+        console.error("An unknown error occurred:", error);
+    }
     return NextResponse.json(
-      { error: 'Failed to generate AI insights' },
+      { error: "Gagal membuat cerita. Silakan coba lagi." },
       { status: 500 }
     );
   }
