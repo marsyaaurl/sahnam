@@ -5,28 +5,31 @@ export async function POST(request: NextRequest) {
     const { prompt } = await request.json();
 
     if (!prompt) {
-      return NextResponse.json(
-        { error: 'Prompt is required' }, 
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'Prompt is required' }, { status: 400 });
     }
 
-    // Simulasi hasil dari prompt user
-    const mockAIResponse = {
-      output: `✨ AI Analysis Result ✨\n\nPrompt received:\n\n${prompt}`
-    };
+    const geminiApiKey = process.env.GEMINI_API_KEY;
 
-    return NextResponse.json(mockAIResponse, {
-      status: 200,
+    const geminiResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${geminiApiKey}`, {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
+      body: JSON.stringify({
+        contents: [{ parts: [{ text: prompt }] }],
+      }),
     });
+
+    const result = await geminiResponse.json();
+
+    const aiOutput = result?.candidates?.[0]?.content?.parts?.[0]?.text || 'AI did not return a valid response.';
+
+    return NextResponse.json({ output: aiOutput });
 
   } catch (error) {
     console.error('Error generating AI insights:', error);
     return NextResponse.json(
-      { error: 'Failed to generate AI insights' }, 
+      { error: 'Failed to generate AI insights' },
       { status: 500 }
     );
   }
