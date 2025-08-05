@@ -133,12 +133,12 @@ export default function AIInsights() {
 
         ${JSON.stringify(formattedData, null, 2)}
 
-        Please analyze this data and provide insights in a well-formatted manner covering:
-        - Most profitable plants (based on ROI percentage and absolute returns)
-        - Investment portfolio analysis
-        - Recommendations for next investments
-        - Risk management tips
-        - Plants that need attention or monitoring
+        Please review this data and explain:
+        - Which plants are the most profitable and why
+        - How well the user's investment is going so far
+        - What plants or strategies the user should consider next
+        - Any risks the user should be aware of
+        - If any of the current plants need special attention
 
         Respond in English with clear, professional analysis in paragraph format. Make it informative and actionable.
       `;
