@@ -133,10 +133,9 @@ export default function AIInsights() {
 
         ${JSON.stringify(formattedData, null, 2)}
 
-        Please review this data and explain:
-        - Which plants are the most profitable and why
-        - What plants or strategies the user should consider next
-        - Any risks the user should be aware of
+        Please analyze this data and provide insights in a well-formatted manner covering:
+        - Most profitable plants 
+        - Recommendations for next investments
 
         Respond in English with clear, professional analysis in paragraph format. Make it informative and actionable.
       `;
