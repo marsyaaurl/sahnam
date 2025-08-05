@@ -135,7 +135,7 @@ export default function AIInsights() {
 
         Please analyze this data and provide insights in a well-formatted manner covering:
         - Most profitable plants 
-        - Recommendations for next investments
+        - Recommendations for next investments (such as what other plants should the user invest)
 
         Respond in English with clear, user analysis in paragraph format. Make it informative and actionable.
       `;
