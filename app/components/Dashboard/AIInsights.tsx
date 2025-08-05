@@ -116,25 +116,29 @@ export default function AIInsights() {
 
       setOutput('Analyzing your investments with AI...');
       
-      const formattedSummary = investmentData.map(item => {
-      const name = item.plants.name;
-      const roi = item.plants.profits;
-      const expectedReturn = item.total_price + (item.total_price * roi / 100);
-      return `• ${name}: ROI ${roi}%, Estimated return Rp${expectedReturn.toLocaleString('id-ID')}`;
-    }).join('\n');
+      const formattedData = investmentData.map(investment => ({
+        plant_name: investment.plants.name,
+        amount_invested: investment.amount,
+        total_price: investment.total_price,
+        plant_price: investment.plants.price,
+        duration_months: investment.plants.duration,
+        expected_profit_percentage: investment.plants.profits,
+        description: investment.plants.desc,
+        expected_return: investment.total_price + (investment.total_price * investment.plants.profits / 100),
+        roi_percentage: investment.plants.profits
+      }));
 
-    const prompt = `
-    Here is the user's plant investment summary:
-    ${formattedSummary}
+      const prompt = `
+        I have the following plant investment data:
 
-    Please provide a simple and friendly analysis covering:
-    - Which plant is most profitable and why
-    - How the user's investment is doing overall
-    - What the user should consider next
-    - Any risks to be aware of
+        ${JSON.stringify(formattedData, null, 2)}
 
-    Avoid complicated words or formulas. Focus on giving helpful tips to the user.
-    `;
+        Please analyze this data and provide insights in a well-formatted manner covering:
+        - Most profitable plants 
+        - Recommendations for next investments
+
+        Respond in English with clear, user analysis in paragraph format. Make it informative and actionable.
+      `;
 
       const aiResponse = await fetch('/api/generate', {
         method: 'POST',
